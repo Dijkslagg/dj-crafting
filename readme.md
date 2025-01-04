@@ -2,7 +2,7 @@
 
 A comprehensive crafting system for FiveM QBCore servers with a progression system, user-friendly UI, and server-side validation.
 
-## Dashboard
+## UI
 
 Check the showcase video [here](https://www.youtube.com/watch?v=no_video_yet_lol)
 
