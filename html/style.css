@@ -1,0 +1,342 @@
+.hidden {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100vw; 
+    height: 100vh;
+    background: transparent !important;
+    color: #fff;
+    overflow: hidden; 
+}
+
+#crafting-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px;
+    height: 800px; 
+    padding: 40px;
+    background: linear-gradient(
+        135deg, 
+        rgba(23, 24, 33, 0.98) 0%, 
+        rgba(37, 38, 50, 1) 50%,
+        rgba(45, 46, 60, 0.98) 100%
+    );
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#search {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    width: 200px;
+}
+
+.search-and-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.categories {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.category-filter {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.category-filter:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.category-filter.active {
+    background: linear-gradient(135deg, #3494E6 0%, #EC6EAD 100%);
+    border-color: transparent;
+}
+
+.recipes-container {
+    flex: 1;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding-right: 10px;
+    margin-bottom: 20px;
+    min-height: 0;
+}
+
+.recipes-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.recipes-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.recipes-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.recipe {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+}
+
+.recipe.locked {
+    opacity: 0.5;
+    pointer-events: none;
+    filter: grayscale(1);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.recipe.locked::after {
+    content: 'Level Required: ' attr(data-level);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(244, 67, 54, 0.9);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.recipe-info {
+    margin-top: auto; 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center; 
+}
+
+.material {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.material.insufficient {
+    border: 1px solid #f44336;
+    background: rgba(244, 67, 54, 0.1);
+}
+
+.crafting-controls {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.quantity-input {
+    width: 60px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+}
+
+.quantity-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.craft-btn {
+    padding: 8px 24px; 
+    background: linear-gradient(135deg, #3494E6 0%, #EC6EAD 100%);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.craft-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.crafting-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    background: transparent;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #3494E6, #EC6EAD);
+    background-size: 200% 100%;
+    transition: width 0.1s linear;
+}
+
+.progress-fill.crafting {
+    animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.player-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.level-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.xp-bar {
+    width: 200px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.xp-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #3494E6, #EC6EAD);
+    transition: width 0.3s ease;
+}
+
+.xp-fill.xp-gained {
+    animation: pulse 1s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.5); }
+    100% { filter: brightness(1); }
+}
+
+.recipe-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.level-req {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.recipe-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.duration, .xp-gain, .max-craftable {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.max-craftable {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.material img {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.recipe-materials {
+    flex: 1;
+    overflow-y: auto;
+    margin: 10px 0;
+}
+
+h2, h3 {
+    margin: 0;
+    font-weight: 500;
+}
+
+.recipe-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.result-image {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+}

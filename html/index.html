@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="crafting-menu" class="hidden">
+        <div class="header">
+            <div class="player-info">
+                <h2>Crafting Workbench</h2>
+                <div class="level-info" id="levelInfo">
+                    <div class="level">Level: <span id="playerLevel">1</span></div>
+                    <div class="xp-bar">
+                        <div class="xp-fill" id="xpFill"></div>
+                    </div>
+                    <div class="xp">XP: <span id="playerXP">0</span></div>
+                </div>
+            </div>
+            <div class="search-and-categories">
+                <input type="text" id="search" placeholder="Search recipes...">
+                <div class="categories" id="categoryFilters">
+                </div>
+            </div>
+        </div>
+        
+        <div class="recipes-container">
+        </div>
+
+        <div class="crafting-footer">
+            <div class="crafting-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
