@@ -2,6 +2,15 @@
 
 A comprehensive crafting system for FiveM QBCore servers with a progression system, user-friendly UI, and server-side validation.
 
+## TODO
+
+- Support more frameworks
+- Player placeable crafting tables (with and without progression)
+- Lock crafting table to job/gang
+- Add crafting messages in [config.lua](config.lua)
+- Custom/unlockable blueprints
+- Custom logo intergration in UI
+
 ## UI
 
 Check the showcase video [here](https://www.youtube.com/watch?v=no_video_yet_lol)
