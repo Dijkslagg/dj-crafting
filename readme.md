@@ -11,7 +11,7 @@ A comprehensive crafting system for FiveM QBCore servers with a progression syst
 - Custom/unlockable blueprints
 - Custom logo intergration in UI
 
-# Planned fixes:
+### Planned fixes:
 - Add the amount you are crafting to UI
 - fix images not showing up when image filename isnt the same as the item name :/
 
