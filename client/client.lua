@@ -16,16 +16,26 @@ local function SpawnCraftingTables()
     DeleteProps()
     
     for tableId, tableData in pairs(Config.CraftingTables) do
+        local modelHash = GetHashKey(tableData.model)
+        if not HasModelLoaded(modelHash) then
+            RequestModel(modelHash)
+            while not HasModelLoaded(modelHash) do
+                Wait(10)
+            end
+        end
+        
         local groundZ = 0
         local success, z = GetGroundZFor_3dCoord(tableData.coords.x, tableData.coords.y, tableData.coords.z, true)
         if success then
             groundZ = z
         end
         
-        local prop = CreateObject(GetHashKey(tableData.model), tableData.coords.x, tableData.coords.y, groundZ, false, false, false)
+        local prop = CreateObject(modelHash, tableData.coords.x, tableData.coords.y, groundZ, false, false, false)
         SetEntityHeading(prop, tableData.coords.w)
         FreezeEntityPosition(prop, true)
         currentProps[tableId] = prop
+        
+        SetModelAsNoLongerNeeded(modelHash)
         
         exports['qb-target']:AddTargetEntity(prop, {
             options = {
@@ -41,6 +51,7 @@ local function SpawnCraftingTables()
         })
     end
 end
+
 
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded')
 AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
