@@ -185,8 +185,8 @@ function renderRecipes() {
         const recipeHTML = `
             <div class="recipe-header">
                 <div class="recipe-title">
-                    <img src="nui://qb-inventory/html/images/${sanitizeInput(recipe.result.item)}.png" class="result-image">
-                    <h3>${sanitizeInput(recipe.name)}</h3>
+                    <img src="nui://qb-inventory/html/images/${sanitizeInput(recipe.imageName)}.png" class="result-image">
+                    <h3>${recipe.result.amount}x ${sanitizeInput(recipe.name)}</h3>
                 </div>
                 ${useProgression ? `<span class="level-req">Level ${recipe.levelRequired}</span>` : ''}
             </div>
@@ -251,7 +251,7 @@ function renderMaterials(recipe, multiplier) {
         const hasEnough = hasRequiredItems(mat.item, required);
         return `
             <div class="material ${hasEnough ? '' : 'insufficient'}">
-                <img src="nui://qb-inventory/html/images/${mat.item}.png">
+                <img src="nui://qb-inventory/html/images/${mat.imageName}.png">
                 <span>${required}x ${mat.item}</span>
             </div>
         `;
